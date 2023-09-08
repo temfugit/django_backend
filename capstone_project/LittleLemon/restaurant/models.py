@@ -15,10 +15,13 @@ class MenuTable(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, db_index=True)
     inventory = models.SmallIntegerField()
     
-
+    
 class MenuItem(models.Model):
     item = models.CharField(max_length=100)
     price = models.IntegerField()
+    
+    def get_item(self):
+        return f'{self.title} : {str(self.price)}'
     
     
 class Booking(models.Model):

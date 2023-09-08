@@ -17,9 +17,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
 from rest_framework import viewsets 
-from rest_framework.decorators import api_view
-from .models import MenuItem
-from .serializers import MenuItemSerializer
+from rest_framework.decorators import api_view, permission_classes
+from .models import MenuItem, Booking
+from .serializers import MenuItemSerializer, BookingSerializer
 
 
 def index(request):
@@ -39,3 +39,18 @@ class MenuItemsView(generics.ListCreateAPIView):
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+    
+
+@authentication_classes([TokenAuthentication])
+class BookingViewSet(viewsets.ModelViewSet):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    permission_classes = [IsAuthenticated] 
+
+
+
+@api_view()
+@permission_classes([IsAuthenticated])
+@authentication_classes([TokenAuthentication])
+def msg(request):
+    return Response({"message":"This view is protected"})
