@@ -135,8 +135,16 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '3/minute',
-        'user': '10/minute'
+        'anon': '300/minute',
+        'user': '300/minute'
+    },
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
 }
-}
+
+
+DJOSER={"USER_ID_FIELD":"username"}
 

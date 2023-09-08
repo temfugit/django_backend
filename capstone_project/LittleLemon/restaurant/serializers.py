@@ -7,7 +7,7 @@ from .models import MenuItem, Booking
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'groups']
+        fields = ['username', 'email', 'password']
     
 
 class MenuItemSerializer(serializers.ModelSerializer):
