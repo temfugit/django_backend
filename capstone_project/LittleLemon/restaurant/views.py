@@ -17,6 +17,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 
 from rest_framework import viewsets 
+from rest_framework.decorators import api_view
+from .models import MenuItem
+from .serializers import MenuItemSerializer
 
 
 def index(request):
@@ -27,3 +30,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
+class MenuItemsView(generics.ListCreateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer
+
+
+class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer

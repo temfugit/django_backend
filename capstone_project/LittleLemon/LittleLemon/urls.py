@@ -21,8 +21,9 @@ from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurant/', include('restaurant.urls')),
+    #path('restaurant/', include('restaurant.urls')),
     path('auth/',include('djoser.urls')),
     path('token/login', views.obtain_auth_token),
+    path('restaurant/', include('restaurant.urls'))
 ]
 
