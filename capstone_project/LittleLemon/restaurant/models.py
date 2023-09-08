@@ -19,9 +19,10 @@ class MenuTable(models.Model):
 class MenuItem(models.Model):
     item = models.CharField(max_length=100)
     price = models.IntegerField()
+    inventory = models.IntegerField()
     
     def get_item(self):
-        return f'{self.title} : {str(self.price)}'
+        return f'{self.item} : {str(self.price)}'
     
     
 class Booking(models.Model):
